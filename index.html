@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name="theme-color" content="#000000"><link rel="manifest" href="/embeddings-viz/manifest.json"><link rel="shortcut icon" href="/embeddings-viz/favicon.ico"><link rel="stylesheet" href="/embeddings-viz/katex.css"><title>React App</title><link href="/embeddings-viz/static/css/main.56d0e8fd.css" rel="stylesheet"></head><body><script type="x-shader/x-vertex" id="vertexshader">attribute float size;
+      attribute vec3 customColor;
+      varying vec3 vColor;
+      void main() {
+        vColor = customColor;
+        vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+        gl_Position = projectionMatrix * mvPosition;
+      }</script><script type="x-shader/x-fragment" id="fragmentshader">uniform vec3 color;
+      uniform sampler2D texture;
+      varying vec3 vColor;
+      void main() {
+        gl_FragColor = vec4( color * vColor, 1.0 );
+        gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord );
+        if ( gl_FragColor.a < ALPHATEST ) discard;
+      }</script><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div><script type="text/javascript" src="/embeddings-viz/static/js/main.00e18a4c.js"></script></body></html>
